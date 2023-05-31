@@ -1,9 +1,11 @@
 package br.com.diegoandcontroll.ecommerce.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.diegoandcontroll.ecommerce.domain.Category;
@@ -33,12 +35,15 @@ public class ProductService {
 
   public ProductResponse createProduct(ProductRequest p) {
     var objProduct = new Product();
-    Category category = categoryRepo.findById(p.getCategoryId()).get();
-    objProduct.setCategory(category);
+    Optional<Category> findById = categoryRepo.findById(p.getCategoryId());
+    if(!findById.isPresent()){
+      new UsernameNotFoundException("Category not found");
+    }
     objProduct.setName(p.getName());
     objProduct.setPrice(p.getPrice());
     objProduct.setImageUrl(p.getImageUrl());
     objProduct.setDescription(p.getDescription());
+    objProduct.setCategory(findById.get());
     repo.save(objProduct);
     return new ProductResponse(objProduct);
 
