@@ -2,6 +2,7 @@ package br.com.diegoandcontroll.ecommerce.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,5 +64,17 @@ public class WishListService {
 
     return WishListResponse.builder().id(wishListSaved.getId()).userId(user.getId()).name(user.getName())
         .email(user.getEmail()).product(product).build();
+  }
+
+  public List<WishListResponse> findAllByUserId(UUID userId) {
+    Optional<User> findById = userRepo.findById(userId);
+    if (!findById.isPresent()) {
+      new UsernameNotFoundException("User not found");
+    }
+    User user = findById.get();
+    List<WishList> findAllByUser = repo.findAllByUser(user);
+
+    return findAllByUser.stream().map(w -> WishListResponse.builder().id(w.getId()).name(w.getUser().getName())
+        .email(w.getUser().getEmail()).userId(userId).product(w.getProduct()).build()).toList();
   }
 }
