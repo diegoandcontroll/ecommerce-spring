@@ -35,7 +35,9 @@ public class SecurityConfiguration {
     "swagger-ui/",
     "/swagger-ui/index.html",
     "/swagger-ui/**",
-    "/api/v1/auth/**"
+    "/api/v1/auth/**",
+    "/api/v1/wishlist"
+    // "/api/v1/product/**"
     // other public endpoints of your API may be appended to this array
 };
   @Bean
