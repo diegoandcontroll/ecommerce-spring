@@ -22,24 +22,22 @@ public class SecurityConfiguration {
   private final AuthenticationProvider authenticationProvider;
   private final LogoutHandler logoutHandler;
   private static final String[] AUTH_WHITELIST = {
-    // -- Swagger UI v2
-    "/v2/api-docs",
-    "/swagger-resources",
-    "/swagger-resources/**",
-    "/configuration/ui",
-    "/configuration/security",
-    "/swagger-ui.html",
-    "/webjars/**",
-    // -- Swagger UI v3 (OpenAPI)
-    "/v3/api-docs/**",
-    "swagger-ui/",
-    "/swagger-ui/index.html",
-    "/swagger-ui/**",
-    "/api/v1/auth/**",
-    "/api/v1/wishlist"
-    // "/api/v1/product/**"
-    // other public endpoints of your API may be appended to this array
-};
+      // -- Swagger UI v2
+      "/v2/api-docs",
+      "/swagger-resources",
+      "/swagger-resources/**",
+      "/configuration/ui",
+      "/configuration/security",
+      "/swagger-ui.html",
+      "/webjars/**",
+      // -- Swagger UI v3 (OpenAPI)
+      "/v3/api-docs/**",
+      "swagger-ui/",
+      "/swagger-ui/index.html",
+      "/swagger-ui/**",
+      "/api/v1/auth/**",
+  };
+
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http

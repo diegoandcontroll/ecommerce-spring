@@ -2,6 +2,7 @@ package br.com.diegoandcontroll.ecommerce.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,15 @@ public class ProductService {
   private final ProductRepo repo;
   private final CategoryRepo categoryRepo;
 
+  public Product findProductById(UUID productId){
+    Optional<Product> productExists = repo.findById(productId);
+
+    if(!productExists.isPresent()){
+      new UsernameNotFoundException("Product not found");
+    }
+
+    return productExists.get();
+  }
   public List<ProductResponse> findAllCategoriesNoPaginable() {
     List<Product> findAll = repo.findAll();
     List<ProductResponse> list = findAll.stream().map(p -> new ProductResponse(p)).toList();

@@ -1,9 +1,10 @@
 package br.com.diegoandcontroll.ecommerce.domain;
 
+
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,25 +18,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "products")
+@Table(name = "cart")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Product {
+public class Cart {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
-
-  private String description;
   
-  private String name;
+  @ManyToOne
+  @JoinColumn(name = "product_id")
+  private Product product;
 
-  private Double price;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+  
+  private int quantity;
 
-  private String imageUrl;
-
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "category_id")
-  Category category;
+  private Date createdAt;
 }
