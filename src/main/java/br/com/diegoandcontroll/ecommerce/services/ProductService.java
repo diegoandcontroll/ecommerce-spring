@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import br.com.diegoandcontroll.ecommerce.domain.Category;
 import br.com.diegoandcontroll.ecommerce.domain.Product;
 import br.com.diegoandcontroll.ecommerce.dtos.product.ProductRequest;
 import br.com.diegoandcontroll.ecommerce.dtos.product.ProductResponse;
+import br.com.diegoandcontroll.ecommerce.exceptions.CustomException;
 import br.com.diegoandcontroll.ecommerce.repositories.CategoryRepo;
 import br.com.diegoandcontroll.ecommerce.repositories.ProductRepo;
 import lombok.RequiredArgsConstructor;
@@ -57,5 +59,13 @@ public class ProductService {
     repo.save(objProduct);
     return new ProductResponse(objProduct);
 
+  }
+
+  public ProductResponse saveImage(UUID productId, String imageUrl){
+    Product product = repo.findById(productId).orElseThrow(() -> new CustomException("NOT FOUND PRODUCT", HttpStatus.NOT_FOUND, "/api/v1/products"));
+
+    product.setImageUrl(imageUrl);
+    repo.save(product);
+    return new ProductResponse(product);
   }
 }
