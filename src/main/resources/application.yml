@@ -16,5 +16,12 @@ spring:
 application:
   security:
     jwt:
-      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      secret-key: secret
       expiration: 86400000
+STRIPE_SECRET_KEY: 
+BASE_URL: http://localhost:3000/
+cloudinary:
+  cloud-name: 
+  api-key: 
+  api-secret: 
+  folder: 
