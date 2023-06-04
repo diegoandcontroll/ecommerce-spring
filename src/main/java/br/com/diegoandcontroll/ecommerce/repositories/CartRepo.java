@@ -6,8 +6,8 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.diegoandcontroll.ecommerce.domain.Cart;
-import br.com.diegoandcontroll.ecommerce.domain.User;
+import br.com.diegoandcontroll.ecommerce.domain.Customer;
 
 public interface CartRepo extends JpaRepository<Cart, UUID>{
-  List<Cart> findAllByUser(User user);
+  List<Cart> findAllByUser(Customer user);
 }

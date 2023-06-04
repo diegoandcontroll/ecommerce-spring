@@ -23,18 +23,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "customers")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserDetails{
+public class Customer implements UserDetails{
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  private String name;
+  private String firstname;
 
+  private String lastname;
+
+  private String imageUrl;
+  
   @Column(unique = true)
   private String email;
 
