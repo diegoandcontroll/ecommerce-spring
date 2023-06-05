@@ -1,7 +1,8 @@
 package br.com.diegoandcontroll.ecommerce.domain;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -23,18 +24,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "customers")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserDetails{
+public class Customer implements UserDetails{
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  private String name;
+  private String firstname;
 
+  private String lastname;
+
+  private String imageUrl;
+  
   @Column(unique = true)
   private String email;
 
@@ -43,9 +48,11 @@ public class User implements UserDetails{
   @Enumerated(EnumType.STRING)
   private Role role;
 
+  private Date createdAt;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority(role.name()));
+    return List.of(new SimpleGrantedAuthority(role.name()));
   }
 
   @Override

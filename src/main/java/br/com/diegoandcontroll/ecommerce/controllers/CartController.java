@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.diegoandcontroll.ecommerce.domain.User;
+import br.com.diegoandcontroll.ecommerce.domain.Customer;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartRequest;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartResponse;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartResponseAll;
@@ -54,7 +54,7 @@ public class CartController {
 
   @DeleteMapping("/{cartId}")
   public ResponseEntity<String> delete(@PathVariable UUID cartId, @RequestParam("userid") UUID userId) {
-    User user = aService.findById(userId);
+    Customer user = aService.findById(userId);
     return ResponseEntity.ok(service.deleteCart(cartId, user));
   }
 

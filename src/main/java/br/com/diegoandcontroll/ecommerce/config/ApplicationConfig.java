@@ -11,14 +11,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import br.com.diegoandcontroll.ecommerce.repositories.UserRepo;
+import br.com.diegoandcontroll.ecommerce.repositories.CustomerRepo;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-  private final UserRepo repository;
+  private final CustomerRepo repository;
 
   @Bean
   public UserDetailsService userDetailsService() {

@@ -1,8 +1,6 @@
 package br.com.diegoandcontroll.ecommerce.dtos.auth;
 
-import java.util.UUID;
-
-import br.com.diegoandcontroll.ecommerce.domain.Role;
+import br.com.diegoandcontroll.ecommerce.domain.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +10,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class AuthResponse {
-  private UUID id;
-  private String name;
-  private String email;
-  private Role role;
+  private CustomerObj customer;
   private String access_token;
+  
+
+  public AuthResponse(Customer c, String token){
+    CustomerObj buildCustomerObj = CustomerObj.builder()
+    .id(c.getId())
+    .firstname(c.getFirstname())
+    .lastname(c.getLastname())
+    .imageURl(c.getImageUrl())
+    .email(c.getEmail())
+    .role(c.getRole())
+    .createdAt(c.getCreatedAt())
+    .build();
+    customer = buildCustomerObj;
+    access_token = token; 
+  }
 }

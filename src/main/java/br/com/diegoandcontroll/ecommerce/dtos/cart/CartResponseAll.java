@@ -29,7 +29,7 @@ public class CartResponseAll {
     List<Product> productList = new ArrayList<>();
     productList.add(cart.getProduct());
     id = cart.getId();
-    userId = cart.getUser().getId();
+    userId = cart.getCustomer().getId();
     products = productList;
     quantity = cart.getQuantity();
 

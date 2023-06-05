@@ -30,9 +30,9 @@ public class WishList {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id")
-  private User user;
+  @OneToOne(targetEntity = Customer.class, fetch = FetchType.EAGER)
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
 
   @ManyToOne
   @JoinColumn(name = "product_id")

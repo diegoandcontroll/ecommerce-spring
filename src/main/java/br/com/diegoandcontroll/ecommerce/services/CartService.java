@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.diegoandcontroll.ecommerce.domain.Cart;
+import br.com.diegoandcontroll.ecommerce.domain.Customer;
 import br.com.diegoandcontroll.ecommerce.domain.Product;
-import br.com.diegoandcontroll.ecommerce.domain.User;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartRequest;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartResponse;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartResponseAll;
@@ -30,14 +30,14 @@ public class CartService {
   private final AuthenticationService aService;
 
   public CartResponse createCart(CartRequest cartRequest) {
-    User user = aService.findById(cartRequest.getUserId());
+    Customer customer = aService.findById(cartRequest.getUserId());
     Product product = pService.findProductById(cartRequest.getProductId());
     List<ProductItem> listProductsItems = new ArrayList<>();
     var cart = Cart.builder()
         .id(cartRequest.getId() != null ? cartRequest.getId() : UUID.randomUUID())
         .product(product)
         .quantity(cartRequest.getQuantity())
-        .user(user)
+        .customer(customer)
         .createdAt(new Date())
         .build();
     Cart save = repo.save(cart);
@@ -50,12 +50,12 @@ public class CartService {
   }
 
   public List<CartResponse> findAllByUserId(UUID userId) {
-    User user = aService.findById(userId);
-    List<Cart> cartUser = repo.findAllByUser(user);
+    Customer customer = aService.findById(userId);
+    List<Cart> cartCustomer = repo.findAllByCustomer(customer);
     List<ProductItem> cartItems = new ArrayList<>();
     List<CartResponse> list = new ArrayList<>();
     double totalCost = 0;
-    for (Cart cart : cartUser) {
+    for (Cart cart : cartCustomer) {
       ProductItem cartItem = new ProductItem(cart);
       totalCost += cartItem.getQuantity() * cart.getProduct().getPrice();
       cartItems.add(cartItem);
@@ -81,7 +81,7 @@ public class CartService {
     return null;
   }
 
-  public String deleteCart(UUID cartId, User user){
+  public String deleteCart(UUID cartId, Customer customer){
     Optional<Cart> cartExist = repo.findById(cartId);
 
     if(!cartExist.isPresent()){
@@ -89,7 +89,7 @@ public class CartService {
     }
     Cart cart = cartExist.get();
 
-    if(cart.getUser() != user){
+    if(cart.getCustomer() != customer){
       throw new CustomException("NOT FOUND CART", HttpStatus.BAD_REQUEST, "/api/v1/cart");
     }
     repo.delete(cart);
