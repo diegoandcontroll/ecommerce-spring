@@ -39,9 +39,7 @@ public class AuthenticationService {
     }
     return userExist.get();
   }
-  public String userLogged() {
-    return "USER";
-  }
+  
   public AuthResponseCreated findByUsername(String username) {
     Optional<Customer> customerExist = repository.findByEmail(username);
     if (!customerExist.isPresent()) {

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class ApplicationConfig {
 
   private final CustomerRepo repository;
-
+  
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> repository.findByEmail(username)

@@ -12,16 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseCategory {
   private UUID id;
-  private String description;
-  
-  private String categoryName;
 
-  private String imageUrl;
+  private String name;
 
   public ResponseCategory(Category c){
     id = c.getId();
-    description = c.getDescription();
-    categoryName = c.getCategoryName();
-    imageUrl = c.getImageUrl();
+    name = c.getName();
   }
 }

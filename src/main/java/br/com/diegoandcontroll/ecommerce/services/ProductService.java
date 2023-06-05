@@ -68,4 +68,16 @@ public class ProductService {
     repo.save(product);
     return new ProductResponse(product);
   }
+  public List<ProductResponse> findByCategory(UUID categoryId) {
+    Optional<Category> category = categoryRepo.findById(categoryId);
+    if(!category.isPresent()) throw new CustomException("NOT FOUND CATEGORY", HttpStatus.NOT_FOUND, "/api/v1/product");
+    List<Product> products = repo.findAllByCategory(category.get());
+  
+    return products.stream().map(p -> new ProductResponse(p)).toList();
+  }
+  public String deleteProduct(UUID productId) {
+    Product product = repo.findById(productId).orElseThrow(() -> new CustomException("PRODUCT NOT FOUND", HttpStatus.NOT_FOUND, "/api/v1/product"));
+    repo.delete(product);
+    return "PRODUCT REMOVED";
+  }
 }
