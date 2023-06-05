@@ -23,9 +23,6 @@ public class Category {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  private String description;
-  
-  private String categoryName;
+  private String name;
 
-  private String imageUrl;
 }

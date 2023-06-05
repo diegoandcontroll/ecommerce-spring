@@ -9,16 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequestCategory {
-
-  private String description;
   
-  private String categoryName;
+  private String name;
 
-  private String imageUrl;
 
   public RequestCategory(Category c){
-    description = c.getDescription();
-    categoryName = c.getCategoryName();
-    imageUrl = c.getImageUrl();
+    name = c.getName();
   }
 }

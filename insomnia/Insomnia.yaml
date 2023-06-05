@@ -1,0 +1,701 @@
+_type: export
+__export_format: 4
+__export_date: 2023-06-05T15:22:14.977Z
+__export_source: insomnia.desktop.app:v2023.1.0
+resources:
+  - _id: req_38a86c1520a2454a963a2e2350034d20
+    parentId: fld_7ccfb3e251ed4a0cb2149dfb19e5d596
+    modified: 1685457192008
+    created: 1685409358679
+    url: "{{ _.base_url }}/category"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "description": "Cat description 3",
+            "categoryName": "Cat name 3",
+            "imageUrl": "https://test.btly.kt/1.png"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409358679
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_7ccfb3e251ed4a0cb2149dfb19e5d596
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685973931844
+    created: 1685408778184
+    name: Categories
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1685359812075.9062
+    _type: request_group
+  - _id: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    parentId: null
+    modified: 1685408758726
+    created: 1685408758726
+    name: Ecommerce
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_c02336939027450686de7fd40ace1c67
+    parentId: fld_7ccfb3e251ed4a0cb2149dfb19e5d596
+    modified: 1685454256287
+    created: 1685408804971
+    url: "{{ _.base_url }}/category"
+    name: FindAllPag
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685408804972
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4f5e9998056742b68ed4ac60cd6121d6
+    parentId: fld_7ccfb3e251ed4a0cb2149dfb19e5d596
+    modified: 1685454262059
+    created: 1685408821588
+    url: "{{ _.base_url }}/category/all"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      prefix: ""
+    metaSortKey: -1685202358045.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ab6232f574da4e20a117cccd2e49f606
+    parentId: fld_b6fb511078424741859d891343b58fa8
+    modified: 1685755568343
+    created: 1685754017490
+    url: "{{ _.base_url }}/product/upload/6c9415f1-56a6-429d-b35e-5108dfb71212"
+    name: UploadImage
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_f9b373a7e3b0483dae95be21a76c1eeb
+          name: file
+          value: ""
+          description: ""
+          type: file
+          fileName: /home/eliot/Downloads/3081484.jpg
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685754017490
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b6fb511078424741859d891343b58fa8
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685973933437
+    created: 1685408766036
+    name: Products
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1685188473212.0781
+    _type: request_group
+  - _id: req_87a6b40da816479b91ec4b08589f2711
+    parentId: fld_b6fb511078424741859d891343b58fa8
+    modified: 1685507951410
+    created: 1685409487733
+    url: "{{ _.base_url }}/product"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "description": "Product description 4",
+            "name": "Product name 4",
+            "price": 200.00,
+            "imageUrl": "https://test.btly.kt/1.png",
+            "categoryId": "e1564004-1f0b-46bb-a9cc-fb64f0917664"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      prefix: ""
+    metaSortKey: -1685409487733
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d22ae3c26e184d2aa12a4b854f1a8009
+    parentId: fld_b6fb511078424741859d891343b58fa8
+    modified: 1685457214092
+    created: 1685409427243
+    url: "{{ _.base_url }}/product"
+    name: FindAllPag
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409427243
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f8fddb1e0fd342dc9bf00dfb2123aec1
+    parentId: fld_b6fb511078424741859d891343b58fa8
+    modified: 1685457222239
+    created: 1685409457594
+    url: "{{ _.base_url }}/product/all"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409392961
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7cf28c1936f74aa7b4b0a3d19929b10a
+    parentId: fld_39d4c24e9d754aa5a348fa914533284b
+    modified: 1685974599677
+    created: 1685561941175
+    url: "{{ _.base_url }}/customer/me"
+    name: Me
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685561941175
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_39d4c24e9d754aa5a348fa914533284b
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685728562467
+    created: 1685408771349
+    name: Auth
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1685017134348.25
+    _type: request_group
+  - _id: req_6e991fda327141d490e69997213f24cc
+    parentId: fld_39d4c24e9d754aa5a348fa914533284b
+    modified: 1685977428162
+    created: 1685977422570
+    url: "{{ _.base_url }}/customer/role"
+    name: Role
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685523708523.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_83495b617800498fbed880d0361f60b4
+    parentId: fld_39d4c24e9d754aa5a348fa914533284b
+    modified: 1685974555030
+    created: 1685902989238
+    url: "{{ _.base_url }}/customer"
+    name: FIndCustomers
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685485475872.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b9ee10986e3345738d4476ba948f88af
+    parentId: fld_39d4c24e9d754aa5a348fa914533284b
+    modified: 1685972613562
+    created: 1685409010570
+    url: "{{ _.base_url }}/auth/sign-up"
+    name: Register
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"firstname": "yxy",
+        	"lastname": "diego",
+        	"imageUrl": "https://test.bt/1.png",
+        	"email": "lukasxdp@gmail.com",
+        	"password": "test"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685409010570
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_17eaddbd0acc4e498622fb733bd1d4eb
+    parentId: fld_39d4c24e9d754aa5a348fa914533284b
+    modified: 1685977834539
+    created: 1685409114843
+    url: "{{ _.base_url }}/auth/sign-in"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "lukasxdp2@gmail.com",
+        	"password": "test"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685408907771
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_deba8cc329ab47429c5ffad1f1204056
+    parentId: fld_131f894c53384b639614a202fe0138af
+    modified: 1685664352497
+    created: 1685663920936
+    url: "{{ _.base_url }}/cart/c10a9201-bc81-424c-ab1b-059938f9315b"
+    name: DeleteCart
+    description: ""
+    method: DELETE
+    body: {}
+    parameters:
+      - id: pair_3dd0c1183e8a489f9a4ff7086f32ae69
+        name: userid
+        value: 04e6eeef-ef41-4e3b-8540-206e6f59b48f
+        description: ""
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685663920936
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_131f894c53384b639614a202fe0138af
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685545703709
+    created: 1685495521833
+    name: Cart
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1684625502659.5
+    _type: request_group
+  - _id: req_4e2fddd612984926af16ce3f20210a7c
+    parentId: fld_131f894c53384b639614a202fe0138af
+    modified: 1685562173929
+    created: 1685495521861
+    url: "{{ _.base_url }}/cart"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "userId": "be07d464-fc95-4efe-8eee-bfd4e47fe255",
+            "productId": "f871038d-f9b3-43a9-b913-0b89ae425731",
+        		"quantity": 1
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      prefix: ""
+    metaSortKey: -1685409487733
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b123ff6c13ab416f94fd5998f060bc8e
+    parentId: fld_131f894c53384b639614a202fe0138af
+    modified: 1685544871395
+    created: 1685495521844
+    url: "{{ _.base_url }}/cart"
+    name: FindAllPag
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: ""
+    metaSortKey: -1685409427243
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1cac38b8504a41beaade12ff56db161d
+    parentId: fld_131f894c53384b639614a202fe0138af
+    modified: 1685544867414
+    created: 1685495521855
+    url: "{{ _.base_url }}/cart/all"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409392961
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_73568d069bb440f6a02e9b70c41d5ff5
+    parentId: fld_131f894c53384b639614a202fe0138af
+    modified: 1685664131593
+    created: 1685507853729
+    url: "{{ _.base_url }}/cart/04e6eeef-ef41-4e3b-8540-206e6f59b48f"
+    name: FindAllByUser
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409375820
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a3bdf85c7dd94544a9275d929e1d24e0
+    parentId: fld_282e23400d0a49a5a10312089a38b13b
+    modified: 1685729327543
+    created: 1685728416647
+    url: "{{ _.base_url }}/order"
+    name: CreateCheckout
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        [
+        	{
+        		"productName": "Product Test",
+        		"quantity": 2,
+        		"price": 200.00,
+        		"productId": "6c9415f1-56a6-429d-b35e-5108dfb71212",
+        		"userId": "04e6eeef-ef41-4e3b-8540-206e6f59b48f"
+        	},
+        	{
+        		"productName": "Product Test 2",
+        		"quantity": 2,
+        		"price": 200.00,
+        		"productId": "97238599-e2e0-4e6a-80bd-bc497239651f",
+        		"userId": "04e6eeef-ef41-4e3b-8540-206e6f59b48f"
+        	}
+        ]
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685728416647
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_282e23400d0a49a5a10312089a38b13b
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685973941522
+    created: 1685728414862
+    name: Checkout
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1684429686815.125
+    _type: request_group
+  - _id: req_c1b028e99aff47efb4d39a71968f524c
+    parentId: fld_fe3bd4eb4ff341c28b1d576f3f1ad085
+    modified: 1685544859574
+    created: 1685544859574
+    url: "{{ _.base_url }}/wishlist"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "userId": "a14cdd49-d08c-41c8-abc9-66d8515bcf82",
+            "productId": "9093f532-d162-4032-a7de-3b1f22be1e48"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: ""
+      prefix: ""
+    metaSortKey: -1685409487733
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_fe3bd4eb4ff341c28b1d576f3f1ad085
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685545723666
+    created: 1685544859517
+    name: Wishlist
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1684233870970.75
+    _type: request_group
+  - _id: req_6bbcf138e4234496b7d5a2513b649633
+    parentId: fld_fe3bd4eb4ff341c28b1d576f3f1ad085
+    modified: 1685544859529
+    created: 1685544859529
+    url: "{{ _.base_url }}/wishlist"
+    name: FindAllPag
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: ""
+    metaSortKey: -1685409427243
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6ddbf1b577d548ffbd3abcd15090d694
+    parentId: fld_fe3bd4eb4ff341c28b1d576f3f1ad085
+    modified: 1685544859559
+    created: 1685544859559
+    url: "{{ _.base_url }}/wishlist/all"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409392961
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3293d12a8dc244d493110bd6e0d7568c
+    parentId: fld_fe3bd4eb4ff341c28b1d576f3f1ad085
+    modified: 1685549702440
+    created: 1685544859593
+    url: "{{ _.base_url }}/wishlist/04e6eeef-ef41-4e3b-8540-206e6f59b48f"
+    name: FindAllByUser
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1685409375820
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_3d2fc15479eec1ac83e188cc2a898590b7bfa4cb
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685454431232
+    created: 1685408758896
+    name: Base Environment
+    data:
+      base_url: http://localhost:8080/api/v1
+      token: "{% response 'body', 'req_17eaddbd0acc4e498622fb733bd1d4eb',
+        'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}"
+    dataPropertyOrder:
+      "&":
+        - base_url
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1685408758897
+    _type: environment
+  - _id: jar_3d2fc15479eec1ac83e188cc2a898590b7bfa4cb
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685408758953
+    created: 1685408758953
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_4ba7b556a4f14928a382caa77b3f8c91
+    parentId: wrk_3771e8ad5a8d48d2a75948a8a1d873ce
+    modified: 1685408758733
+    created: 1685408758733
+    fileName: Ecommerce
+    contents: ""
+    contentType: yaml
+    _type: api_spec
