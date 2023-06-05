@@ -50,12 +50,12 @@ public class CartService {
   }
 
   public List<CartResponse> findAllByUserId(UUID userId) {
-    Customer user = aService.findById(userId);
-    List<Cart> cartUser = repo.findAllByUser(user);
+    Customer customer = aService.findById(userId);
+    List<Cart> cartCustomer = repo.findAllByCustomer(customer);
     List<ProductItem> cartItems = new ArrayList<>();
     List<CartResponse> list = new ArrayList<>();
     double totalCost = 0;
-    for (Cart cart : cartUser) {
+    for (Cart cart : cartCustomer) {
       ProductItem cartItem = new ProductItem(cart);
       totalCost += cartItem.getQuantity() * cart.getProduct().getPrice();
       cartItems.add(cartItem);

@@ -3,6 +3,7 @@ package br.com.diegoandcontroll.ecommerce.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(
+  prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
@@ -35,7 +38,8 @@ public class SecurityConfiguration {
       "swagger-ui/",
       "/swagger-ui/index.html",
       "/swagger-ui/**",
-      "/api/v1/auth/**",
+      "/api/v1/auth/sign-in",
+      "/api/v1/auth/sign-up",
   };
 
   @Bean
@@ -45,8 +49,6 @@ public class SecurityConfiguration {
         .disable()
         .authorizeHttpRequests()
         .antMatchers(AUTH_WHITELIST).permitAll()
-        .and()
-        .authorizeHttpRequests()
         .anyRequest()
         .authenticated()
         .and()

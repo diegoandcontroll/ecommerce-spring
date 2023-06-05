@@ -14,12 +14,16 @@ public class AuthResponseCreated {
   
   private CustomerObj customer;
 
-  public AuthResponseCreated(Customer u){
-    customer.setEmail(u.getEmail());
-    customer.setFirstname(u.getFirstname());
-    customer.setLastname(u.getLastname());
-    customer.setImageURl(u.getImageUrl());
-    customer.setRole(u.getRole());
-     
+  public AuthResponseCreated(Customer c){
+    CustomerObj buildCustomerObj = CustomerObj.builder()
+    .id(c.getId())
+    .firstname(c.getFirstname())
+    .lastname(c.getLastname())
+    .imageURl(c.getImageUrl())
+    .email(c.getEmail())
+    .role(c.getRole())
+    .createdAt(c.getCreatedAt())
+    .build();
+    customer = buildCustomerObj;
   }
 }

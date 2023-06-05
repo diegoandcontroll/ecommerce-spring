@@ -9,5 +9,5 @@ import br.com.diegoandcontroll.ecommerce.domain.Cart;
 import br.com.diegoandcontroll.ecommerce.domain.Customer;
 
 public interface CartRepo extends JpaRepository<Cart, UUID>{
-  List<Cart> findAllByUser(Customer user);
+  List<Cart> findAllByCustomer(Customer customer);
 }

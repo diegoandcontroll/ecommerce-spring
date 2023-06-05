@@ -9,5 +9,5 @@ import br.com.diegoandcontroll.ecommerce.domain.Customer;
 import br.com.diegoandcontroll.ecommerce.domain.WishList;
 
 public interface WishListRepo extends JpaRepository<WishList, UUID>{
-  List<WishList> findAllByUser(Customer user);
+  List<WishList> findAllByCustomer(Customer customer);
 }

@@ -15,11 +15,16 @@ public class AuthResponse {
   
 
   public AuthResponse(Customer c, String token){
-    customer.setEmail(c.getEmail());
-    customer.setFirstname(c.getFirstname());
-    customer.setLastname(c.getLastname());
-    customer.setImageURl(c.getImageUrl());
-    customer.setRole(c.getRole());
+    CustomerObj buildCustomerObj = CustomerObj.builder()
+    .id(c.getId())
+    .firstname(c.getFirstname())
+    .lastname(c.getLastname())
+    .imageURl(c.getImageUrl())
+    .email(c.getEmail())
+    .role(c.getRole())
+    .createdAt(c.getCreatedAt())
+    .build();
+    customer = buildCustomerObj;
     access_token = token; 
   }
 }

@@ -1,7 +1,8 @@
 package br.com.diegoandcontroll.ecommerce.domain;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -47,9 +48,11 @@ public class Customer implements UserDetails{
   @Enumerated(EnumType.STRING)
   private Role role;
 
+  private Date createdAt;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority(role.name()));
+    return List.of(new SimpleGrantedAuthority(role.name()));
   }
 
   @Override

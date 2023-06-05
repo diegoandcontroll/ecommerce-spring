@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class WishListService {
   private final WishListRepo repo;
   private final ProductRepo repoProduct;
-  private final CustomerRepo userRepo;
+  private final CustomerRepo customerRepo;
 
   public List<WishListResponse> findAllCategoriesNoPaginable() {
     List<WishList> findAll = repo.findAll();
@@ -39,7 +39,7 @@ public class WishListService {
   }
 
   public WishListResponse create(WishListRequest data) {
-    Optional<Customer> customerExist = userRepo.findById(data.getUserId());
+    Optional<Customer> customerExist = customerRepo.findById(data.getUserId());
     Optional<Product> productExist = repoProduct.findById(data.getProductId());
     if (!customerExist.isPresent() && !productExist.isPresent()) {
       new UsernameNotFoundException("Product or User not found");
@@ -58,12 +58,12 @@ public class WishListService {
   }
 
   public List<WishListResponse> findAllByUserId(UUID userId) {
-    Optional<Customer> findById = userRepo.findById(userId);
+    Optional<Customer> findById = customerRepo.findById(userId);
     if (!findById.isPresent()) {
       new UsernameNotFoundException("User not found");
     }
-    Customer user = findById.get();
-    List<WishList> findAllByUser = repo.findAllByUser(user);
+    Customer customer = findById.get();
+    List<WishList> findAllByUser = repo.findAllByCustomer(customer);
 
     return findAllByUser.stream().map(w -> new WishListResponse(w)).toList();
   }
