@@ -12,8 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class WishListRequest {
-  
-  private UUID userId;
-  
   private UUID productId;
 }
