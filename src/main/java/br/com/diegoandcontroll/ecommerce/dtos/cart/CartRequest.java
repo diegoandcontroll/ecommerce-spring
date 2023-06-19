@@ -17,7 +17,5 @@ public class CartRequest {
 
   private UUID productId;
 
-  private UUID userId;
-
   private Integer quantity;
 }

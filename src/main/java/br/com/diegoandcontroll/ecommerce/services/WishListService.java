@@ -6,14 +6,15 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.diegoandcontroll.ecommerce.domain.Customer;
 import br.com.diegoandcontroll.ecommerce.domain.Product;
 import br.com.diegoandcontroll.ecommerce.domain.WishList;
-import br.com.diegoandcontroll.ecommerce.dtos.wishlist.WishListRequest;
 import br.com.diegoandcontroll.ecommerce.dtos.wishlist.WishListResponse;
+import br.com.diegoandcontroll.ecommerce.exceptions.CustomException;
 import br.com.diegoandcontroll.ecommerce.repositories.CustomerRepo;
 import br.com.diegoandcontroll.ecommerce.repositories.ProductRepo;
 import br.com.diegoandcontroll.ecommerce.repositories.WishListRepo;
@@ -38,18 +39,16 @@ public class WishListService {
     return findAll.map(w -> new WishListResponse(w));
   }
 
-  public WishListResponse create(WishListRequest data) {
-    Optional<Customer> customerExist = customerRepo.findById(data.getUserId());
-    Optional<Product> productExist = repoProduct.findById(data.getProductId());
-    if (!customerExist.isPresent() && !productExist.isPresent()) {
-      new UsernameNotFoundException("Product or User not found");
+  public WishListResponse create(UUID product, Customer user) {
+    Optional<Product> productExist = repoProduct.findById(product);
+    if (!productExist.isPresent()) {
+      throw new CustomException("NOT FOUND PRODUCT", HttpStatus.NOT_FOUND, "/api/v1/wishlist");
     }
-    Customer user = customerExist.get();
-    Product product = productExist.get();
+    Product productFind = productExist.get();
 
     var wishlist = WishList.builder()
         .customer(user)
-        .product(product)
+        .product(productFind)
         .build();
 
     WishList wishListSaved = repo.save(wishlist);
@@ -66,5 +65,18 @@ public class WishListService {
     List<WishList> findAllByUser = repo.findAllByCustomer(customer);
 
     return findAllByUser.stream().map(w -> new WishListResponse(w)).toList();
+  }
+
+  public String remove(UUID wishlistId, Customer customer) {
+    Optional<WishList> wishlist = repo.findById(wishlistId);
+    if(!wishlist.isPresent()){
+      throw new CustomException("NOT FOUND WISH LIST", HttpStatus.NOT_FOUND, "/api/v1/wishlist");
+    }
+    WishList existWishlist = wishlist.get();
+    if(existWishlist.getCustomer() != customer){
+      throw new CustomException("BAD REQUEST", HttpStatus.BAD_REQUEST, "/api/v1/wishlist");
+    }
+    repo.delete(existWishlist);
+    return "ITEM REMOVED TO WISHLIST";
   }
 }

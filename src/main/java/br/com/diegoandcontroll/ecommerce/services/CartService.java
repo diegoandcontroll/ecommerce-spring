@@ -29,8 +29,7 @@ public class CartService {
   private final ProductService pService;
   private final AuthenticationService aService;
 
-  public CartResponse createCart(CartRequest cartRequest) {
-    Customer customer = aService.findById(cartRequest.getUserId());
+  public CartResponse createCart(CartRequest cartRequest, Customer customer) {
     Product product = pService.findProductById(cartRequest.getProductId());
     List<ProductItem> listProductsItems = new ArrayList<>();
     var cart = Cart.builder()

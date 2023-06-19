@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.diegoandcontroll.ecommerce.domain.Customer;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartRequest;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartResponse;
 import br.com.diegoandcontroll.ecommerce.dtos.cart.CartResponseAll;
-import br.com.diegoandcontroll.ecommerce.services.AuthenticationService;
 import br.com.diegoandcontroll.ecommerce.services.CartService;
+import br.com.diegoandcontroll.ecommerce.utils.CustomerUtils;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -29,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartController {
   private final CartService service;
-  private final AuthenticationService aService;
+  private final CustomerUtils utils;
 
   @GetMapping()
   public ResponseEntity<Page<CartResponse>> findAllPaginable(Pageable pageable) {
@@ -48,14 +47,15 @@ public class CartController {
 
   @PostMapping
   public ResponseEntity<CartResponse> create(@RequestBody CartRequest cartRequest) {
-    CartResponse createCartRequest = service.createCart(cartRequest);
+    Customer customer = utils.getCutomerLogger("/api/v1/cart");
+    CartResponse createCartRequest = service.createCart(cartRequest, customer);
     return new ResponseEntity<CartResponse>(createCartRequest, HttpStatus.CREATED);
   }
 
   @DeleteMapping("/{cartId}")
-  public ResponseEntity<String> delete(@PathVariable UUID cartId, @RequestParam("userid") UUID userId) {
-    Customer user = aService.findById(userId);
-    return ResponseEntity.ok(service.deleteCart(cartId, user));
+  public ResponseEntity<String> delete(@PathVariable UUID cartId) {
+    Customer customer = utils.getCutomerLogger("/api/v1/cart");
+    return ResponseEntity.ok(service.deleteCart(cartId,customer));
   }
 
 }

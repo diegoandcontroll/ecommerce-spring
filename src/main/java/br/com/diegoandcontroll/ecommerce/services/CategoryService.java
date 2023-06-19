@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.diegoandcontroll.ecommerce.domain.Category;
 import br.com.diegoandcontroll.ecommerce.dtos.category.RequestCategory;
+import br.com.diegoandcontroll.ecommerce.dtos.category.ResponseCategory;
 import br.com.diegoandcontroll.ecommerce.exceptions.CustomException;
 import br.com.diegoandcontroll.ecommerce.repositories.CategoryRepo;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +29,22 @@ public class CategoryService {
     return categoryRepo.findAll(pageable);
   }
 
-  public RequestCategory createRequestCategory(RequestCategory cat){
+  public ResponseCategory createRequestCategory(RequestCategory cat){
     var catObj = new Category();
     BeanUtils.copyProperties(cat, catObj);
-    categoryRepo.save(catObj);
-    return cat;
+    return new ResponseCategory(categoryRepo.save(catObj));
   }
 
   public String deleteCategory(UUID categoryId) {
     Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new CustomException("CATEGORY NOT FOUND", HttpStatus.NOT_FOUND, "/api/v1/category"));
     categoryRepo.delete(category);
     return "CATEGORY DELETED";
+  }
+
+  public ResponseCategory update(ResponseCategory categoryRequest) {
+    Category category = categoryRepo.findById(categoryRequest.getId()).orElseThrow(() -> new CustomException("CATEGORY NOT FOUND", HttpStatus.NOT_FOUND, "/api/v1/category"));
+    category.setName(categoryRequest.getName());
+    categoryRepo.save(category);
+    return new ResponseCategory(category);
   }
 }
